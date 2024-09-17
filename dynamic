@@ -1,0 +1,26 @@
+attach IAM role to ansible master
+sudo yum update -y
+sudo yum install python3-pip
+sudo pip install boto3
+Install ansible galaxy
+ansible-galaxy collection install amazon.aws
+ssh-key gen paste the keyinthe node 
+
+
+
+-sudo vi /etc/ansible/ansible.cfg
+	[defaults]
+enable_plugins = aws_ec2
+inventory =./aws_ec2.yml
+host_key_checking = False
+
+
+sudo vi /etc/ansible/aws_ec2.yml
+paste the below mater
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+filters:
+  tag:Name: 
+    - dev
+      #add multiple tag names here if required
